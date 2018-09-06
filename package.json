@@ -1,0 +1,26 @@
+{
+  "name": "mofron-event-hover",
+  "version": "0.0.2",
+  "description": "hover event for mofron",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "mofron-event-mouseover" : "",
+    "mofron-event-mouseout" : ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simpart/mofron-event-hover.git"
+  },
+  "keywords": [
+    "front-end"
+  ],
+  "author": "simparts",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/simpart/mofron-event-hover/issues"
+  },
+  "homepage": "https://github.com/simpart/mofron-event-hover#readme"
+}
