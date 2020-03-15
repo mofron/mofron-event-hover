@@ -1,0 +1,13 @@
+<require>
+    <tag load="mofron-comp-frame">Frame</tag>
+    <tag load="mofron-event-hover">Hover</tag>
+</require>
+
+<script run=init>
+let evt = (e1,e2,e3) => {
+    console.log(e2);
+}
+</script>
+
+<Frame event=Hover:@evt>
+</Frame>

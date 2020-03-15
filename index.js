@@ -1,60 +1,63 @@
 /**
  * @file mofron-event-hover/index.js
- * @author simpart
+ * @brief hover event for mofron
+ *        this event notifies when the mouse is hovered or outed on the component.
+ * ## event function parameter
+ *  - component: event target component object
+ *  - event: "click" event object by addEventListener
+ *  - mixed: user specified parameter
+ * @license MIT
  */
-const mf     = require('mofron');
-const MsOver = require('mofron-event-mouseover');
-const MsOut  = require('mofron-event-mouseout');
-/**
- * @class mofron.event.Hover
- * @brief hover event class for mofron component
- */
-mf.event.Hover = class extends mofron.Event {
-    
-    constructor (po) {
+const MsOver  = require('mofron-event-mouseover');
+const MsOut   = require('mofron-event-mouseout');
+const ConfArg = mofron.class.ConfArg;
+
+module.exports = class extends mofron.class.Event {
+    /**
+     * initialize event
+     * 
+     * @param (mixed) short-form parameter
+     *                key-value: event config
+     * @type private
+     */
+    constructor (prm) {
         try {
             super();
             this.name('Hover');
-            this.m_hvrbuf = [];
-            this.prmOpt(po);
+	    this.confmng().add("status", { type: "boolean" });
+            
+	    if (undefined !== prm) {
+                this.config(prm);
+	    }
         } catch (e) {
             console.error(e.stack);
             throw e;
         }
     }
     
+    /**
+     * event contents
+     * 
+     * @param (mofron.class.Dom) event target dom object
+     * @type private
+     */
     contents (tgt_dom) {
         try {
-            let hdl = (p1,p2) => {
+	    let hover = this;
+            let evt = (p1,p2,p3) => {
                 try {
-                    let hvr = p2[0];
-                    let flg = p2[1];
-                    //let lst_tm = hvr.lastKickTime();
-                    //let tm = new Date().getTime();
-                    //hvr.lastKickTime(tm);
-                    //hvr.execHandler(flg);
-                    
-                    if (0 === hvr.hoverBuff().length) {
-                        let exe_hdr = () => {
-                            try {
-                                let buf = hvr.hoverBuff();
-                                hvr.execHandler(buf[buf.length-1]);
-                                hvr.resetBuff();
-                            } catch (e) {
-                                console.error(e.stack);
-                                throw e;
-                            }
-                        };
-                        setTimeout(exe_hdr, 50);
-                    }
-                    hvr.hoverBuff(flg);
+                    if (hover.status() !== p3) {
+		        hover.status(p3);
+                        hover.execListener(p3);
+		    }
                 } catch (e) {
                     console.error(e.stack);
                     throw e;
                 }
             }
             this.component().event([
-                new MsOver([hdl,[this,true]]), new MsOut([hdl,[this,false]])
+                new MsOver(new ConfArg(evt,true)),
+		new MsOut(new ConfArg(evt, false))
             ]);
         } catch (e) {
             console.error(e.stack);
@@ -62,38 +65,20 @@ mf.event.Hover = class extends mofron.Event {
         }
     }
     
-    hoverBuff (prm) {
+    /**
+     * hover status
+     * 
+     * @param (boolean) hover status
+     * @return (boolean) hover status
+     * @type function
+     */
+    status (prm) {
         try {
-            if (undefined === prm) {
-                /* getter */
-                return this.m_hvrbuf;
-            }
-            /* setter */
-            if ('boolean' !== typeof prm) {
-                throw new Error('invalid parameter');
-            }
-            this.m_hvrbuf.push(prm);
-        } catch (e) {
+            return this.confmng("status", prm);
+	} catch (e) {
             console.error(e.stack);
             throw e;
-        }
-    }
-    
-    resetBuff () {
-        try {
-            this.m_hvrbuf = [];
-        } catch (e) {
-            console.error(e.stack);
-            throw e;
-        }
-    }
-    
-    lastKickTime (prm) {
-        try { return this.member('lastKickTime', 'number', prm, 0); } catch (e) {
-            console.error(e.stack);
-            throw e;
-        }
+	}
     }
 }
-module.exports = mf.event.Hover;
 /* end of file */

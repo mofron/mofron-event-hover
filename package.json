@@ -1,6 +1,6 @@
 {
   "name": "mofron-event-hover",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "hover event for mofron",
   "main": "index.js",
   "scripts": {
@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/simpart/mofron-event-hover.git"
+    "url": "git+https://github.com/mofron/mofron-event-hover.git"
   },
   "keywords": [
-    "front-end"
+    "front-end", "mofron"
   ],
   "author": "simparts",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/simpart/mofron-event-hover/issues"
+    "url": "https://github.com/mofron/mofron-event-hover/issues"
   },
-  "homepage": "https://github.com/simpart/mofron-event-hover#readme"
+  "homepage": "https://github.com/mofron/mofron-event-hover#readme"
 }
