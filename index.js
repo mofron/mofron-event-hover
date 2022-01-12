@@ -20,14 +20,15 @@ module.exports = class extends mofron.class.Event {
      *                key-value: event config
      * @type private
      */
-    constructor (prm) {
+    constructor (p1) {
         try {
             super();
-            this.name('Hover');
+            this.modname('Hover');
+
 	    this.confmng().add("status", { type: "boolean" });
             
-	    if (undefined !== prm) {
-                this.config(prm);
+	    if (0 < arguments.length) {
+                this.config(p1);
 	    }
         } catch (e) {
             console.error(e.stack);
