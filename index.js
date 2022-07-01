@@ -8,8 +8,8 @@
  *  - mixed: user specified parameter
  * @license MIT
  */
-const MsOver  = require('mofron-event-mouseover');
-const MsOut   = require('mofron-event-mouseout');
+const MsEnter = require('mofron-event-mouseenter');
+const MsLeave = require('mofron-event-mouseleave');
 const ConfArg = mofron.class.ConfArg;
 
 module.exports = class extends mofron.class.Event {
@@ -57,8 +57,8 @@ module.exports = class extends mofron.class.Event {
                 }
             }
             this.component().event([
-                new MsOver(new ConfArg(evt,true)),
-		new MsOut(new ConfArg(evt, false))
+                new MsEnter(new ConfArg(evt,true)),
+		new MsLeave(new ConfArg(evt, false))
             ]);
         } catch (e) {
             console.error(e.stack);
