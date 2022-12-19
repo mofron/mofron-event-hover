@@ -1,14 +1,14 @@
 {
   "name": "mofron-event-hover",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "hover event for mofron",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "mofron-event-mouseover" : "",
-    "mofron-event-mouseout" : ""
+    "mofron-event-mouseenter": "",
+    "mofron-event-mouseleave": ""
   },
   "repository": {
     "type": "git",
